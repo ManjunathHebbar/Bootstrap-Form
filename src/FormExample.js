@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
@@ -13,7 +12,7 @@ export default class FormExample extends Component {
       validated:false
     }
   }
-
+  
   handleSubmit = (event) => {
     console.log(event.currentTarget);
     event.preventDefault();
@@ -26,6 +25,7 @@ export default class FormExample extends Component {
       );  
     }
     else {
+    console.log("hi")
     this.setState(
     {validated:true}
     );
@@ -40,7 +40,6 @@ render(){
   return (
     <Container>
       <h2>Billing Address</h2>
-      <Row>
         <Form className="col-8" noValidate validated={validated} onSubmit={this.handleSubmit}>
           <Form.Row>
             <Form.Group as={Col} className="col-6" controlId="validationCustom01">
@@ -78,7 +77,9 @@ render(){
           <Form.Group controlId="formGroupEmail">
             <Form.Label><div>Email address (optional)</div></Form.Label>
             <Form.Control type="email" placeholder="Enter email" />
-            
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
           </Form.Group>
 
           <Form.Group controlId="formGridAddress1">
@@ -107,8 +108,8 @@ render(){
 
           <Form.Group controlId="formGridsate">
             <Form.Label>State</Form.Label>
-            <Form.Control as="select" required>
-              <option>Choose...</option>
+            <Form.Control as="select" placeholder="Choose..." required>
+              <option></option>
               <option>Karnataka</option>
             </Form.Control>
             <Form.Control.Feedback type="invalid">
@@ -148,31 +149,32 @@ render(){
 
           <Form.Group controlId="formGridAddress2">
             <Form.Label>Name on card</Form.Label>
-            <Form.Control />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control required />
+            <Form.Control.Feedback type="invalid" required>
                 Please Enter name as on your card.
             </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group controlId="formGridAddress2">
             <Form.Label>Credit card number</Form.Label>
-            <Form.Control />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control required/>
+            <Form.Control.Feedback type="invalid"> 
                 Please Enter credit card number.
             </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group controlId="formGridAddress2">
             <Form.Label>Expiration</Form.Label>
+            <Form.Control  required/>
             <Form.Control.Feedback type="invalid">
                 Please Enter card Expiration details.
             </Form.Control.Feedback>
-            <Form.Control />
+            
           </Form.Group>
 
           <Form.Group controlId="formGridAddress2">
             <Form.Label>CVV</Form.Label>
-            <Form.Control />
+            <Form.Control required />
             <Form.Control.Feedback type="invalid">
                 Please Enter CVV.
             </Form.Control.Feedback>
@@ -180,7 +182,6 @@ render(){
 
           <Button className="col-12" type="submit">Continue to checkout</Button>
         </Form>
-      </Row>
     </Container>
     );
   }
